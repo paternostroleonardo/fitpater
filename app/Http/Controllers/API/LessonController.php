@@ -17,10 +17,13 @@ class LessonController extends Controller
     /**
      * Display a listing of the resource.
      *
-     */
-    public function index(Request $request)
+    */
+    public function index()
     {
-
+       $lesson = Lesson::with('calendars')->get();
+       $dateMax = $lesson->calendars->start_date;
+       /* Lesson::all('created_at')->max('created_at')->toArray(); */
+        return $lesson;
     }
 
     /**

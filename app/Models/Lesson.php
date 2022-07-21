@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Lesson extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'code',
@@ -21,7 +20,6 @@ class Lesson extends Model
 
     const TYPES = [
         'RUMBA' => 'RUMBA',
-        'GAP' => 'GAP',
         'CROSSTECH' => 'CROSSTECH',
         'YOGA' => 'YOGA',
         'COMBAT' => 'COMBAT',
@@ -30,7 +28,6 @@ class Lesson extends Model
         'CYCLING' => 'CYCLING',
         'PILATES' => 'PILATES',
         'SUPERABS' => 'SUPERABS',
-        'PUMP' => 'PUMP'
     ];
 
     /**

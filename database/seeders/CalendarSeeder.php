@@ -15,7 +15,7 @@ class CalendarSeeder extends Seeder
     public function run()
     {
         Calendar::factory()
-        ->count(50)
+        ->count(16)
         ->create();
     }
 }

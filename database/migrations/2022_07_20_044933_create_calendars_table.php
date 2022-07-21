@@ -17,8 +17,9 @@ class CreateCalendarsTable extends Migration
             $table->id();
             $table->timestamp('start_date');
             $table->timestamp('end_date');
+            $table->unsignedBigInteger('lesson_id');
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

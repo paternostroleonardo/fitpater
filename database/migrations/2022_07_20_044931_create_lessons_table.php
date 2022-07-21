@@ -19,10 +19,7 @@ class CreateLessonsTable extends Migration
             $table->uuid('code')->nullable();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('calendar_id')->nullable();
-            $table->foreign('calendar_id')->references('id')->on('calendars')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
