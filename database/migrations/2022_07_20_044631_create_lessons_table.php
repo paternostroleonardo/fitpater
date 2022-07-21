@@ -16,8 +16,8 @@ class CreateLessonsTable extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->uuid('code');
-            $table->string('name');
+            $table->uuid('code')->nullable();
+            $table->string('title');
             $table->text('description')->nullable();
             $table->unsignedBigInteger('calendar_id')->nullable();
             $table->foreign('calendar_id')->references('id')->on('calendars')->onUpdate('CASCADE')->onDelete('CASCADE');
