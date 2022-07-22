@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
-use Illuminate\Http\JsonResponse;
 use App\Models\Calendar;
 use App\Models\Lesson;
-use Carbon\Carbon;
 use App\Http\Requests\LessonStoreRequest;
 use App\Http\Requests\LessonUpdateRequest;
+use Carbon\Carbon;
 
 class LessonController extends Controller
 {
@@ -19,12 +17,12 @@ class LessonController extends Controller
     /**
      * Display a listing of the resource.
      *
-    */
+     */
     public function index()
     {
-       $calendar = Calendar::with('lesson')
-       ->whereBetween('start_date', [Carbon::now(), Carbon::now()->addDays(8)])
-       ->get();
+        $calendar = Calendar::with('lesson')
+            ->whereBetween('start_date', [Carbon::now(), Carbon::now()->addDays(8)])
+            ->get();
 
         return $this->successResponse($calendar);
     }
@@ -47,8 +45,8 @@ class LessonController extends Controller
      */
     public function show(Calendar $lesson)
     {
-        $lesson = Calendar::with('lesson')
-        ->where('lesson_id', $lesson)->first();
+        $lesson = Lesson::with('calendars')
+            ->whereId($lesson->id)->first();
 
         return $this->successResponse($lesson);
     }
@@ -59,7 +57,7 @@ class LessonController extends Controller
      */
     public function update(LessonUpdateRequest $request, $lesson)
     {
-        $lesson = Calendar::where('lesson_id', $lesson)->first();
+        $lesson = Calendar::where('lesson_id', $lesson->id)->first();
         $validatedData = $request->validated();
 
         if ($lesson) {
@@ -76,10 +74,9 @@ class LessonController extends Controller
      */
     public function destroy(Calendar $lesson)
     {
-        $lesson = Calendar::where('lesson_id', $lesson)->first();
+        $lesson = Calendar::where('lesson_id', $lesson->id)->first();
         $lesson->delete();
 
         return $this->showMessage(__("Deleted the lesson with success"));
     }
-
 }
