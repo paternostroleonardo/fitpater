@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/lessons', [LessonController::class, 'index']);
+Route::post('save-lesson', [LessonController::class, 'store']);
+Route::get('/show-lesson/{lesson}', [LessonController::class, 'show']);
+Route::put('edit-lesson/{lesson}', [LessonController::class, 'update']);

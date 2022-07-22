@@ -14,4 +14,9 @@ class Calendar extends Model
         'start_date',
         'end_date',
     ];
+
+    public function lesson(): BelongsTo
+    {
+        return $this->belongsTo(Lesson::class);
+    }
 }
